@@ -1,0 +1,38 @@
+#app {
+	background: #fff;
+}
+
+#app > .row {
+	background: #fff;
+}
+
+h1 {
+	margin-bottom: 20px;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+
+
+
+
+.slide{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.active-slide{
+  opacity: 1;
+  z-index: 2;
+}
+.quiz-container{
+  position: relative;
+  height: 200px;
+  margin-top: 40px;
+}

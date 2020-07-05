@@ -210,3 +210,120 @@
   }
 
 })(jQuery);
+
+"use strict";
+
+window.onload = function() {
+
+    var quiz = {
+        title: 'Ketahui uji statistik Anda!',
+
+        questions: [{
+                text: "Apa objek riset utama Anda?",
+                responses: [{
+                        text: 'Manusia',
+                        value: 'Manusia',
+                        example: 'Data pasien uji klinis.'
+                    },
+                    {
+                        text: 'Hewan',
+                        value: 'Hewan',
+                        example: 'Tikus, mencit, marmut, kelinci, dll.'
+                    },
+                    {
+                        text: 'Lainnya',
+                        value: 'Lainnya',
+                        example: 'Lini sel stabil, lini sel primer, tanaman, mikro-organisme, dll.'
+                    }
+                ]
+            },
+            {
+                text: "Jenis data apakah yang akan Anda kumpulkan?",
+                responses: [{
+                        text: 'Continuous (parametric)',
+                        value: 'Cont para',
+                        example: 'Berat badan, tinggi badan, tekanan darah, gula darah sewaktu, dll.'
+                    },
+                    {
+                        text: 'Continuous non parametric',
+                        value: 'Cont non-para',
+                        example: 'Indeks massa tubuh atau blood pressure hypertension stages (normal, stage 1, stage 2).'
+                    },
+                    {
+                        text: 'Survival data',
+                        value: 'Survival',
+                        example: 'Persentase objek yang masih hidup dalam waktu penelitian.'
+                    }
+                ]
+            },
+            {
+                text: "Berapakah jumlah kelompok yang akan diteliti?",
+                responses: [{
+                        text: '1 kelompok',
+                        value: 'Satu kelompok',
+                        example: 'Jumlah rata-rata pasien per hari dalam rumah sakit dan rata-rata nilai kelas tahun ini dibanding tahun lalu.'
+                    },
+                    {
+                        text: '2 kelompok tidak berpasangan',
+                        value: 'Dua kelompok tidak berpasangan',
+                        example: 'Penggunaan pupuk dan tanpa pupuk terhadap pertumbuhan tanaman.'
+                    },
+                    {
+                        text: '2 kelompok berpasangan',
+                        value: 'Dua kelompok berpasangan',
+                        example: 'Nilai tes sebelum dan sesudah mengikuti pelatihan'
+                    },
+                    {
+                        text: 'Lebih dari 2 kelompok',
+                        value: 'Lebih dari dua',
+                        example: 'Perbandingan nilai kelas 4A, 4B, dan 4C yang menerima metode pembelajaran yang berbeda'
+                    },
+                    {
+                        text: 'Continuous',
+                        value: 'Continuous',
+                        example: 'Dosis obat dan efek yang diperoleh atau jumlah pekerja dan tingkat produksi.'
+                    }
+                ]
+            },
+        ]
+    };
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            quiz: quiz,
+            questionIndex: 0,
+            userResponses: Array()
+        },
+        methods: {
+            // Go to next question
+            next: function() {
+                this.questionIndex++;
+                console.log(this.userResponses);
+            },
+            // Go to previous question
+            prev: function() {
+                this.questionIndex--;
+            },
+            score: function() {
+                //find the highest occurence in responses
+                var modeMap = {};
+                var maxEl = this.userResponses[0],
+                    maxCount = 1;
+                for (var i = 0; i < this.userResponses.length; i++) {
+                    var el = this.userResponses[i];
+                    if (modeMap[el] == null)
+                        modeMap[el] = 1;
+                    else
+                        modeMap[el]++;
+                    if (modeMap[el] > maxCount) {
+                        maxEl = el;
+                        maxCount = modeMap[el];
+                    }
+                }
+                return maxEl;
+            }
+        }
+    });
+}

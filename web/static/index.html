@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <title>akarilmiah</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+  <meta content="riset, kedokteran, statistik, bioinformmatika" name="keywords">
+  <meta content="Kami melayani hal-hal yang berkaitan dengan manajemen riset" name="description">
 
   <!-- Favicons -->
   <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
@@ -33,6 +33,11 @@
 
   <!-- Responsive Stylesheet File -->
   <link href="css/responsive.css" rel="stylesheet">
+
+  <link href="css/quiz_style.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 
 </head>
 
@@ -79,10 +84,11 @@
                   <li>
                     <a class="page-scroll" href="#team">Team</a>
                   </li>
+                  <!--
                   <li>
                     <a class="page-scroll" href="#portfolio">Portfolio</a>
                   </li>
-
+                -->
                   <li>
                     <a class="page-scroll" href="#blog">Blog</a>
                   </li>
@@ -189,13 +195,126 @@
   </div>
   <!-- End Slider Area -->
 
+  <!-- Start StatQ area-->
+  <div id="app" class="app-area area-padding" v-cloak>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h1>{{ quiz.title}}</h1>
+
+          <div v-for="(question, index) in quiz.questions">
+            <div class="response-field" v-show="index === questionIndex">
+              <h3>{{ question.text }}</h3>
+              <ul>
+                <li v-for="response in question.responses">
+                  <label>
+                                      <input type="radio"
+                                             v-bind:value="response.value"
+                                             v-bind:name="index"
+                                             v-model="userResponses[index]"> {{response.text}}
+                  </label>
+                </li>
+              </ul>
+              <button class="secondary button" style="margin-top:5px;" v-if="questionIndex > 0" v-on:click="prev">
+                      prev
+                    </button>
+              <button class="success button" style="margin-left:5px; margin-top:5px;" v-on:click="next">
+                      next
+                    </button>
+            </div>
+          </div>
+          <div v-show="questionIndex === quiz.questions.length">
+            <h3>Uji statistik yang kamu butuhkan:</h3>
+            <p>
+              sekarang masih uji coba. <br>
+              jadi belum ada yang betul.
+            </p>
+            <!--
+            <div class="coba">
+              <h2 class="blurry-text">Foreverblur</h2>
+            </div>
+          -->
+            <h3>Daftar untuk melihat penuh</h3>
+            <div class="daftar">
+              <input type="email" placeholder="masukan email">
+              <button>Daftar sekarang</button>
+            </div>
+            <div id="pricing" class="pricing-area-view area-padding">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
+                      <h2>Pricing Table</h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="pri_table_list">
+                      <h3>basic <br/> <span>Rp. 100.000,-</span></h3>
+                      <ol>
+                        <li class="check">Online system</li>
+                        <li class="check cross">Full access</li>
+                        <li class="check">Free apps</li>
+                        <li class="check">Multiple slider</li>
+                        <li class="check cross">Free domin</li>
+                        <li class="check cross">Support unlimited</li>
+                        <li class="check">Payment online</li>
+                        <li class="check cross">Cash back</li>
+                      </ol>
+                      <button>sign up now</button>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="pri_table_list active">
+                      <span class="saleon">Best Deal</span>
+                      <h3>standard <br/> <span>Rp. 250.000,-</span></h3>
+                      <ol>
+                        <li class="check">Online system</li>
+                        <li class="check">Full access</li>
+                        <li class="check">Free apps</li>
+                        <li class="check">Multiple slider</li>
+                        <li class="check cross">Free domin</li>
+                        <li class="check">Support unlimited</li>
+                        <li class="check">Payment online</li>
+                        <li class="check cross">Cash back</li>
+                      </ol>
+                      <button>sign up now</button>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="pri_table_list">
+                      <h3>premium <br/> <span>Rp. 500.000,-</span></h3>
+                      <ol>
+                        <li class="check">Online system</li>
+                        <li class="check">Full access</li>
+                        <li class="check">Free apps</li>
+                        <li class="check">Multiple slider</li>
+                        <li class="check">Free domin</li>
+                        <li class="check">Support unlimited</li>
+                        <li class="check">Payment online</li>
+                        <li class="check">Cash back</li>
+                      </ol>
+                      <button>sign up now</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of StatQ area -->
+
   <!-- Start About area -->
   <div id="about" class="about-area area-padding">
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="section-headline text-center">
-            <h2>About Akarilmiah</h2>
+            <h2>About AkarIlmiah</h2>
           </div>
         </div>
       </div>
@@ -215,23 +334,23 @@
           <div class="well-middle">
             <div class="single-well">
               <a href="#">
-                <h4 class="sec-head">Project Maintenance</h4>
+                <h4 class="sec-head">Kami memberikan yang terbaik</h4>
               </a>
               <p>
-                Our company focuses on delivering the best research-related management system especially in biology and all related fields.
+                Kami berusaha membantu Anda dalam mengatur pekerjaan penelitian dan pengembangan dalam bidang kedokteran dan yang terkait.
               </p>
               <ul>
                 <li>
-                  <i class="fa fa-check"></i> Manage Research Project
+                  <i class="fa fa-check"></i> Manajemen riset
                 </li>
                 <li>
-                  <i class="fa fa-check"></i> Synthetizing Custom Oligo
+                  <i class="fa fa-check"></i> Analisis data hasil riset
                 </li>
                 <li>
-                  <i class="fa fa-check"></i> Sequencing DNA
+                  <i class="fa fa-check"></i> Pengembangan applikasi ponsel dan dekstop
                 </li>
                 <li>
-                  <i class="fa fa-check"></i> Bioinformatics Analysis
+                  <i class="fa fa-check"></i> Analisis bioinformatika
                 </li>
               </ul>
             </div>
@@ -249,7 +368,7 @@
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="section-headline services-head text-center">
-            <h2>Our Services</h2>
+            <h2>Layanan yang kami tawarkan</h2>
           </div>
         </div>
       </div>
@@ -263,9 +382,9 @@
                   <a class="services-icon" href="#">
 											<i class="fa fa-suitcase"></i>
 										</a>
-                  <h4>Research Management</h4>
+                  <h4>Ayo buat risetmu sukses!</h4>
                   <p>
-                    We help you manage your valuable research and to deliver impact to society.
+                    Kami akan membantu Anda menyukseskan riset yang sedang Anda kerjakan.
                   </p>
                 </div>
               </div>
@@ -277,11 +396,11 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-											<i class="fa fa-file-text"></i>
+											<i class="fa fa-bar-chart"></i>
 										</a>
-                  <h4>Oligo Synthesis</h4>
+                  <h4>Buat datamu bermakna!</h4>
                   <p>
-                    We help you synthesis custom oligos with our fast and advance technology.
+                    Kami akan membantu Anda meningkatkan penyampaian data hasil riset.
                   </p>
                 </div>
               </div>
@@ -294,11 +413,11 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-											<i class="fa fa-file-text"></i>
+											<i class="fa fa-rocket"></i>
 										</a>
-                  <h4>DNA Sequencing</h4>
+                  <h4>Permudah pekerjaanmu dengan aplikasi digital!</h4>
                   <p>
-                    With our reliable sequencing technology, we help you achieve the best of you research.
+                    Kami dapat membantu membuat aplikasi digital untuk mempermudah pekerjaan Anda.
                   </p>
                 </div>
               </div>
@@ -313,9 +432,9 @@
                   <a class="services-icon" href="#">
 											<i class="fa fa-code"></i>
 										</a>
-                  <h4>Bioinformatics Analysis</h4>
+                  <h4>Olah data bioinformatikamu!</h4>
                   <p>
-                    We help you design your bioinformatic experiment and analysis.
+                    Kami akan membantu Anda mengolah data bioinformmatika seperti RNA-seq, molecular docking, dll.
                   </p>
                 </div>
               </div>
@@ -383,9 +502,9 @@
       </div>
     </div>
   </div>
-  our-skill-area end -->
+  our-skill-area end 
 
-  <!-- Faq area start -->
+  Faq area start 
   <div class="faq-area area-padding">
     <div class="container">
       <div class="row">
@@ -399,7 +518,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
           <div class="faq-details">
             <div class="panel-group" id="accordion">
-              <!-- Panel Default -->
+              Panel Default 
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="check-title">
@@ -416,8 +535,8 @@
                   </div>
                 </div>
               </div>
-              <!-- End Panel Default -->
-              <!-- Panel Default -->
+               End Panel Default 
+               Panel Default 
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="check-title">
@@ -434,8 +553,8 @@
                   </div>
                 </div>
               </div>
-              <!-- End Panel Default -->
-              <!-- Panel Default -->
+               End Panel Default 
+               Panel Default 
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="check-title">
@@ -452,8 +571,8 @@
                   </div>
                 </div>
               </div>
-              <!-- End Panel Default -->
-              <!-- Panel Default -->
+               End Panel Default 
+               Panel Default 
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="check-title">
@@ -470,13 +589,13 @@
                   </div>
                 </div>
               </div>
-              <!-- End Panel Default -->
+               End Panel Default 
             </div>
           </div>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <div class="tab-menu">
-            <!-- Nav tabs -->
+             Nav tabs 
             <ul class="nav nav-tabs" role="tablist">
               <li class="active">
                 <a href="#p-view-1" role="tab" data-toggle="tab">Project</a>
@@ -532,10 +651,10 @@
           </div>
         </div>
       </div>
-      <!-- end Row -->
+       end Row 
     </div>
   </div>
-  <!-- End Faq Area -->
+   End Faq Area -->
 
   <!-- Start Wellcome Area -->
   <div class="wellcome-area">
@@ -606,7 +725,7 @@
               </div>
               <div class="team-content text-center">
                 <h4>Ariel</h4>
-                <p>CEO</p>
+                <!--<p>CEO</p> -->
               </div>
             </div>
           </div>
@@ -639,7 +758,7 @@
               </div>
               <div class="team-content text-center">
                 <h4>David</h4>
-                <p>CBO</p>
+                <!--<p>CBO</p>-->
               </div>
             </div>
           </div>
@@ -672,7 +791,7 @@
               </div>
               <div class="team-content text-center">
                 <h4>Hendra</h4>
-                <p>CTO</p>
+                <!--<p>CTO</p>-->
               </div>
             </div>
           </div>
@@ -685,7 +804,7 @@
   </div>
   <!-- End Team Area -->
 
-  <!-- Start reviews Area -->
+  <!-- Start reviews Area 
   <div class="reviews-area hidden-xs">
     <div class="work-us">
       <div class="work-left-text">
@@ -700,7 +819,7 @@
       </div>
     </div>
   </div>
-  <!-- End reviews Area -->
+   End reviews Area -->
 
   <!-- Start portfolio Area 
   <div id="portfolio" class="portfolio-area area-padding fix">
@@ -848,14 +967,14 @@
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="section-headline text-center">
-            <h2>Pricing Table</h2>
+            <h2>Daftar harga jasa</h2>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-4 col-sm-4 col-xs-12">
           <div class="pri_table_list">
-            <h3>basic <br/> <span>$80 / month</span></h3>
+            <h3>basic <br/> <span>Rp. 100.000,-</span></h3>
             <ol>
               <li class="check">Online system</li>
               <li class="check cross">Full access</li>
@@ -866,13 +985,13 @@
               <li class="check">Payment online</li>
               <li class="check cross">Cash back</li>
             </ol>
-            <button>sign up now</button>
+            <button>Dapatkan sekarang</button>
           </div>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
           <div class="pri_table_list active">
-            <span class="saleon">top sale</span>
-            <h3>standard <br/> <span>$110 / month</span></h3>
+            <span class="saleon">Best Deal</span>
+            <h3>standard <br/> <span>Rp. 250.000,-</span></h3>
             <ol>
               <li class="check">Online system</li>
               <li class="check">Full access</li>
@@ -883,12 +1002,12 @@
               <li class="check">Payment online</li>
               <li class="check cross">Cash back</li>
             </ol>
-            <button>sign up now</button>
+            <button>Dapatkan sekarang</button>
           </div>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
           <div class="pri_table_list">
-            <h3>premium <br/> <span>$150 / month</span></h3>
+            <h3>premium <br/> <span>Rp. 500.000,-</span></h3>
             <ol>
               <li class="check">Online system</li>
               <li class="check">Full access</li>
@@ -899,24 +1018,24 @@
               <li class="check">Payment online</li>
               <li class="check">Cash back</li>
             </ol>
-            <button>sign up now</button>
+            <button>Dapatkan sekarang</button>
           </div>
         </div>
       </div>
     </div>
   </div>
   <!-- End pricing table area -->
-  <!-- Start Testimonials -->
+  <!-- Start Testimonials
   <div class="testimonials-area">
     <div class="testi-inner area-padding">
       <div class="testi-overly"></div>
       <div class="container ">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
-            <!-- Start testimonials Start -->
+             Start testimonials Start
             <div class="testimonial-content text-center">
               <a class="quate" href="#"><i class="fa fa-quote-right"></i></a>
-              <!-- start testimonial carousel -->
+               start testimonial carousel 
               <div class="testimonial-carousel">
                 <div class="single-testi">
                   <div class="testi-text">
@@ -926,7 +1045,7 @@
                     <h6>Boby</h6>
                   </div>
                 </div>
-                <!-- End single item -->
+                 End single item 
                 <div class="single-testi">
                   <div class="testi-text">
                     <p>
@@ -935,7 +1054,7 @@
                     <h6>Jhon</h6>
                   </div>
                 </div>
-                <!-- End single item -->
+                 End single item 
                 <div class="single-testi">
                   <div class="testi-text">
                     <p>
@@ -944,17 +1063,17 @@
                     <h6>Fleming</h6>
                   </div>
                 </div>
-                <!-- End single item -->
+                 End single item 
               </div>
             </div>
-            <!-- End testimonials end -->
+             End testimonials end 
           </div>
-          <!-- End Right Feature -->
+           End Right Feature 
         </div>
       </div>
     </div>
   </div>
-  <!-- End Testimonials -->
+   End Testimonials -->
   <!-- Start Blog Area -->
   <div id="blog" class="blog-area">
     <div class="blog-inner area-padding">
@@ -963,7 +1082,7 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="section-headline text-center">
-              <h2>Latest News</h2>
+              <h2>Kabar terbaru</h2>
             </div>
           </div>
         </div>
@@ -1075,7 +1194,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs=12">
           <div class="suscribe-text text-center">
             <h3>Welcome to akarilmiah</h3>
-            <a class="sus-btn" href="#">Get A quote</a>
+            <!--<a class="sus-btn" href="#">Get A quote</a>-->
           </div>
         </div>
       </div>
@@ -1090,7 +1209,7 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="section-headline text-center">
-              <h2>Contact us</h2>
+              <h2>Hubungi kami</h2>
             </div>
           </div>
         </div>
@@ -1101,7 +1220,7 @@
               <div class="single-icon">
                 <i class="fa fa-mobile"></i>
                 <p>
-                  Call: +1 5589 55488 55<br>
+                  Whatsapp: +62 5589 55488 55<br>
                   <span>Monday-Friday (9am-5pm)</span>
                 </p>
               </div>
@@ -1113,8 +1232,8 @@
               <div class="single-icon">
                 <i class="fa fa-envelope-o"></i>
                 <p>
-                  Email: info@example.com<br>
-                  <span>Web: www.akarilmiah.my.id</span>
+                  Email: info@akarilmiah.com<br>
+                  <span>Web: www.akarilmiah.com</span>
                 </p>
               </div>
             </div>
@@ -1187,7 +1306,7 @@
                   <h2><span>akar</span>ilmiah</h2>
                 </div>
 
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
+                <p>We Provide a Clear Pathway for Your Inquisitive Mind</p>
                 <div class="footer-icons">
                   <ul>
                     <li>
@@ -1213,11 +1332,11 @@
               <div class="footer-head">
                 <h4>information</h4>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                  Silakan kontak kami jika Anda memiliki pertanyaan.
                 </p>
                 <div class="footer-contacts">
-                  <p><span>Tel:</span> +123 456 789</p>
-                  <p><span>Email:</span> contact@example.com</p>
+                  <p><span>Whatsapp:</span> +62 456 789</p>
+                  <p><span>Email:</span> info@akarilmiah.com</p>
                   <p><span>Working Hours:</span> 9am-5pm</p>
                 </div>
               </div>
@@ -1283,8 +1402,8 @@
 
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
-
   <script src="js/main.js"></script>
+  
 </body>
 
 </html>

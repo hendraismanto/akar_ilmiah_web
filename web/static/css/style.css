@@ -186,7 +186,6 @@ ul {
 }
 
 input, select, textarea, input[type="text"], input[type="date"], input[type="url"], input[type="email"], input[type="password"], input[type="tel"], button, button[type="submit"] {
-  -moz-appearance: none;
   box-shadow: none !important;
 }
 
@@ -2348,6 +2347,64 @@ span.email-notes {
   padding-top: 30px;
 }
 
+/*----------------------------------------
+ daftar area
+----------------------------------------*/
+.daftar button {
+  background: #444 none repeat scroll 0 0;
+  border: 1px solid #444;
+  border-radius: 0 20px 20px 0;
+  color: #fff;
+  float: left;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 14px 20px;
+  width: 20%;
+}
+
+.daftar>button:hover {
+  background-color: #fff;
+  border: 1px solid #333;
+  color: #333;
+}
+.daftar input {
+  border: 1px solid #333;
+  color: #333;
+  float: left;
+  font-size: 15px;
+  line-height: 24px;
+  padding: 14px 20px;
+  width: 30%;
+  height: 52px;
+}
+
+.coba h2 {
+  color: transparent;
+  display: block;
+  font: bold 72px Helvetica;
+  text-shadow: 0px 0px 25px #000;
+  font-size: 50px;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding: 50px;
+}
+
+.response-field button {
+  background: #444 none repeat scroll 0 0;
+  border: 1px solid #444;
+  color: #fff;
+  margin-bottom: 25px;
+  padding: 10px 35px;
+  text-transform: uppercase;
+  transition: all 0.4s ease 0s;
+  border-radius: 30px;
+}
+
+.response-field button:hover {
+  background-color: #fff;
+  border: 1px solid #333;
+  color: #333;
+}
 /*----------------------------------------
  .End CSS
 ----------------------------------------*/
